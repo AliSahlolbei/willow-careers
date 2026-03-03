@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Willow — Build Agency 2.0</title>
 
-  <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Join Willow — Build Agency 2.0">
   <meta property="og:description" content="We're rethinking how SMEs show up on social media — AI-powered content at scale, real coaching, and tools that actually move the needle. Come shape what's next.">
@@ -14,11 +13,10 @@
   <meta name="twitter:title" content="Join Willow — Build Agency 2.0">
   <meta name="twitter:description" content="AI-powered social media agency. Hiring in Product, Marketing & Sales.">
 
-  <!-- Tally embed widget -->
   <script async src="https://tally.so/widgets/embed.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,94 +27,74 @@
       --dark: #1A1008;
       --dark-mid: #2D1A0A;
       --dark-accent: #3D2212;
-      --cream: #FDF6EE;
       --text-muted: rgba(255,255,255,0.45);
-      --text-dim: rgba(255,255,255,0.25);
+      --text-dim: rgba(255,255,255,0.22);
     }
 
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: var(--dark);
-      min-height: 100vh;
-      overflow-x: hidden;
+      overflow: hidden;
       color: #FFFAF5;
     }
 
-    /* ── Animated background ── */
-    .bg-canvas {
+    /* ── Background ── */
+    .bg {
       position: fixed;
       inset: 0;
       z-index: 0;
-      background: linear-gradient(145deg, var(--dark) 0%, var(--dark-mid) 45%, var(--dark-accent) 100%);
+      background: linear-gradient(145deg, #1A1008 0%, #261408 50%, #321B0D 100%);
       pointer-events: none;
     }
-    .bg-canvas::before {
+    .bg::before {
       content: '';
       position: absolute;
-      top: -20%;
-      left: -10%;
-      width: 70%;
-      height: 70%;
-      background: radial-gradient(ellipse, rgba(255,95,0,0.09) 0%, transparent 65%);
-      animation: drift1 14s ease-in-out infinite alternate;
+      top: -30%; left: -15%;
+      width: 75%; height: 75%;
+      background: radial-gradient(ellipse, rgba(255,95,0,0.11) 0%, transparent 60%);
+      animation: drift 16s ease-in-out infinite alternate;
     }
-    .bg-canvas::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      right: -10%;
-      width: 60%;
-      height: 60%;
-      background: radial-gradient(ellipse, rgba(255,138,61,0.06) 0%, transparent 65%);
-      animation: drift2 18s ease-in-out infinite alternate;
-    }
-    @keyframes drift1 {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(6%, 5%) scale(1.1); }
-    }
-    @keyframes drift2 {
-      from { transform: translate(0, 0) scale(1.1); }
-      to   { transform: translate(-5%, -4%) scale(1); }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(8%,6%) scale(1.12); }
     }
 
-    /* ── Page shell ── */
+    /* ── Layout ── */
     .page {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1fr 420px;
-      min-height: 100vh;
-      align-items: stretch;
+      grid-template-columns: 1fr 440px;
+      height: 100vh;
     }
 
-    /* ── LEFT ── */
+    /* ══ LEFT ══ */
     .left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(3rem, 6vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+      padding: 4rem clamp(3rem, 5vw, 5.5rem);
     }
 
-    /* Logo */
+    /* Logo — inline SVG avoids img aspect-ratio bugs */
     .wordmark {
-      height: 52px;
+      height: 36px;
       width: auto;
-      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+      margin-bottom: 2.2rem;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.1s forwards;
+      animation: up 0.55s ease 0.05s forwards;
     }
 
-    /* Headline */
     h1 {
-      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
       font-weight: 900;
       line-height: 1.07;
       letter-spacing: -0.038em;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.3rem;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.25s forwards;
+      animation: up 0.55s ease 0.2s forwards;
     }
     h1 .accent {
       background: linear-gradient(130deg, var(--orange) 0%, var(--orange-light) 100%);
@@ -125,65 +103,65 @@
       background-clip: text;
     }
 
-    /* Tagline */
     .tagline {
       color: var(--text-muted);
-      font-size: clamp(0.95rem, 1.15vw, 1.1rem);
-      line-height: 1.7;
-      max-width: 460px;
-      margin-bottom: clamp(2rem, 4vh, 3.5rem);
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      line-height: 1.72;
+      max-width: 440px;
+      margin-bottom: 2.2rem;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.4s forwards;
+      animation: up 0.55s ease 0.35s forwards;
     }
 
-    /* Pills section */
+    /* Pills */
     .pills-section {
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
-      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+      gap: 0.9rem;
+      margin-bottom: 2.5rem;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.55s forwards;
+      animation: up 0.55s ease 0.5s forwards;
     }
-    .pill-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .pill-group { display: flex; flex-direction: column; gap: 0.4rem; }
     .pill-label {
       color: var(--text-dim);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.13em;
     }
-    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
     .pill {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      padding: 0.45rem 1rem;
+      padding: 0.4rem 0.95rem;
       border-radius: 100px;
-      transition: transform 0.15s ease, background 0.15s ease;
+      transition: transform 0.15s, background 0.15s;
       cursor: default;
+      user-select: none;
     }
     .pill:hover { transform: translateY(-1px); }
     .pill.brand {
-      background: rgba(255,95,0,0.12);
+      background: rgba(255,95,0,0.13);
       color: var(--orange-light);
-      border: 1px solid rgba(255,95,0,0.22);
+      border: 1px solid rgba(255,95,0,0.25);
     }
-    .pill.brand:hover { background: rgba(255,95,0,0.2); }
+    .pill.brand:hover { background: rgba(255,95,0,0.22); }
     .pill.alt {
       background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.6);
-      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.11);
     }
     .pill.alt:hover { background: rgba(255,255,255,0.1); }
 
-    /* CTA buttons */
+    /* CTA */
     .cta-group {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.9rem;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.7s forwards;
+      animation: up 0.55s ease 0.65s forwards;
     }
     .btn-primary {
       display: inline-flex;
@@ -192,230 +170,306 @@
       background: var(--orange);
       color: #fff;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
-      padding: 0.85rem 1.8rem;
-      border-radius: 12px;
+      padding: 0.82rem 1.7rem;
+      border-radius: 11px;
       border: none;
       cursor: pointer;
-      text-decoration: none;
       letter-spacing: -0.01em;
-      transition: background 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
-      box-shadow: 0 4px 20px rgba(255,95,0,0.35);
+      transition: background 0.18s, transform 0.14s, box-shadow 0.18s;
+      box-shadow: 0 4px 22px rgba(255,95,0,0.38);
     }
     .btn-primary:hover {
       background: #e85500;
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(255,95,0,0.45);
+      box-shadow: 0 8px 30px rgba(255,95,0,0.5);
     }
     .btn-primary:active { transform: translateY(0); }
-    .btn-primary svg { flex-shrink: 0; transition: transform 0.18s ease; }
-    .btn-primary:hover svg { transform: translateX(2px); }
+    .btn-primary svg { transition: transform 0.18s; }
+    .btn-primary:hover svg { transform: translateX(3px); }
 
     .btn-ghost {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.38rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       text-decoration: none;
-      padding: 0.75rem 1rem;
+      padding: 0.72rem 1rem;
       border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.1);
-      transition: color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
-      letter-spacing: -0.01em;
+      transition: color 0.18s, border-color 0.18s, transform 0.14s;
     }
     .btn-ghost:hover {
       color: #fff;
-      border-color: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.28);
       transform: translateY(-1px);
     }
-    .btn-ghost svg { transition: transform 0.18s ease; }
-    .btn-ghost:hover svg { transform: translate(1px, -1px); }
+    .btn-ghost svg { transition: transform 0.18s; }
+    .btn-ghost:hover svg { transform: translate(1px,-1px); }
 
-    /* Footer note */
     .footer-note {
-      margin-top: clamp(2.5rem, 5vh, 4rem);
+      margin-top: 2.2rem;
       color: var(--text-dim);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.04em;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.85s forwards;
+      animation: up 0.55s ease 0.8s forwards;
     }
 
-    /* ── RIGHT — decorative panel ── */
+    /* ══ RIGHT ══ */
     .right {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 3rem 2.5rem;
-      border-left: 1px solid rgba(255,255,255,0.05);
+      gap: 1.4rem;
+      padding: 3.5rem 2.2rem;
+      border-left: 1px solid rgba(255,255,255,0.06);
       overflow: hidden;
       opacity: 0;
-      animation: fadeIn 0.8s ease 0.5s forwards;
+      animation: fadeIn 0.7s ease 0.4s forwards;
     }
+
+    /* Orange glow on the right panel */
     .right::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(0px);
-    }
-
-    /* Big glowing orb */
-    .orb {
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%,
-        rgba(255,95,0,0.18) 0%,
-        rgba(255,138,61,0.1) 40%,
+      top: 5%; left: 50%;
+      transform: translateX(-50%);
+      width: 360px; height: 360px;
+      background: radial-gradient(circle,
+        rgba(255,95,0,0.22) 0%,
+        rgba(255,95,0,0.08) 45%,
         transparent 70%);
-      animation: orbPulse 6s ease-in-out infinite;
-      filter: blur(2px);
+      border-radius: 50%;
+      animation: glow 7s ease-in-out infinite alternate;
+      pointer-events: none;
     }
-    @keyframes orbPulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50%       { transform: scale(1.08); opacity: 1; }
-    }
-
-    /* Floating stat cards */
-    .stat-cards {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-      max-width: 300px;
-    }
-    .stat-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 1.2rem 1.4rem;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-    .stat-card:hover {
-      background: rgba(255,255,255,0.07);
-      transform: translateX(-3px);
-    }
-    .stat-card:nth-child(1) { animation: slideIn 0.5s ease 0.8s forwards; }
-    .stat-card:nth-child(2) { animation: slideIn 0.5s ease 1.0s forwards; }
-    .stat-card:nth-child(3) { animation: slideIn 0.5s ease 1.2s forwards; }
-
-    .stat-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(255,95,0,0.12);
-      border: 1px solid rgba(255,95,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.1rem;
-    }
-    .stat-text { flex: 1; }
-    .stat-value {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #FFFAF5;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin-top: 0.15rem;
+    @keyframes glow {
+      from { opacity: 0.75; transform: translateX(-50%) scale(1); }
+      to   { opacity: 1;    transform: translateX(-50%) scale(1.12); }
     }
 
-    /* Divider ring around orb */
+    /* Subtle ring lines */
     .ring {
       position: absolute;
       border-radius: 50%;
-      border: 1px solid rgba(255,95,0,0.08);
-      animation: ringExpand 8s ease-in-out infinite;
+      border: 1px solid rgba(255,95,0,0.1);
+      animation: pulse 8s ease-in-out infinite;
+      pointer-events: none;
     }
-    .ring-1 { width: 200px; height: 200px; animation-delay: 0s; }
-    .ring-2 { width: 300px; height: 300px; animation-delay: 2s; }
-    .ring-3 { width: 400px; height: 400px; animation-delay: 4s; }
-    @keyframes ringExpand {
-      0%   { opacity: 0.5; transform: scale(1); }
-      50%  { opacity: 0.15; transform: scale(1.05); }
-      100% { opacity: 0.5; transform: scale(1); }
+    .ring-1 { width: 180px; height: 180px; animation-delay: 0s; }
+    .ring-2 { width: 290px; height: 290px; animation-delay: 2.5s; }
+    .ring-3 { width: 410px; height: 410px; animation-delay: 5s; border-color: rgba(255,95,0,0.05); }
+    @keyframes pulse {
+      0%,100% { opacity: 0.6; transform: scale(1); }
+      50%      { opacity: 0.2; transform: scale(1.04); }
+    }
+
+    /* ── Mock post card ── */
+    .post-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 320px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 1.25rem 1.35rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      animation: slideLeft 0.5s ease 0.9s forwards;
+      transition: transform 0.25s, background 0.25s;
+    }
+    .post-card:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.9rem;
+    }
+    .post-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .post-meta { flex: 1; }
+    .post-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #FFFAF5;
+      line-height: 1.2;
+    }
+    .post-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
+    .post-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--orange-light);
+      background: rgba(255,95,0,0.13);
+      border: 1px solid rgba(255,95,0,0.22);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .post-body {
+      font-size: 0.83rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1rem;
+    }
+    .post-body strong { color: #FFFAF5; font-weight: 600; }
+
+    .post-image {
+      width: 100%;
+      height: 80px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(255,95,0,0.2) 0%, rgba(255,138,61,0.08) 100%);
+      border: 1px solid rgba(255,95,0,0.15);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,95,0,0.5);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .post-footer {
+      display: flex;
+      gap: 1.1rem;
+    }
+    .post-stat {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .post-stat span { color: rgba(255,255,255,0.65); }
+
+    /* ── Mini stat chips ── */
+    .stat-chips {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 0.7rem;
+      width: 100%;
+      max-width: 320px;
+      opacity: 0;
+      animation: slideLeft 0.5s ease 1.1s forwards;
+    }
+    .chip {
+      flex: 1;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 13px;
+      padding: 0.85rem 0.9rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .chip:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+    .chip-val {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #FFFAF5;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .chip-val .unit {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange-light);
+    }
+    .chip-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.3;
     }
 
     /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+    @keyframes up {
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn {
       from { opacity: 0; }
       to   { opacity: 1; }
     }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(20px); }
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(18px); }
       to   { opacity: 1; transform: translateX(0); }
     }
 
     /* ── Responsive ── */
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
+      body { overflow: auto; }
       .page {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        height: auto;
+        min-height: 100vh;
       }
+      .left { padding: 3.5rem 2.5rem; }
       .right {
         border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.05);
-        padding: 3rem 2rem;
-        min-height: 320px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding: 3rem 2rem 3.5rem;
       }
-      .stat-cards { flex-direction: row; flex-wrap: wrap; max-width: 100%; }
-      .stat-card { flex: 1 1 200px; }
       .ring-3 { display: none; }
     }
-    @media (max-width: 540px) {
-      .left { padding: 2.5rem 1.5rem; }
+    @media (max-width: 520px) {
+      .left { padding: 2.8rem 1.5rem; }
       h1 { font-size: 2.2rem; }
       .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
       .cta-group { flex-direction: column; }
-    }
-
-    /* ── Print ── */
-    @media print {
-      .bg-canvas, .right { display: none; }
-      .page { grid-template-columns: 1fr; }
+      .stat-chips { gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-canvas"></div>
+  <div class="bg"></div>
 
   <div class="page">
-    <!-- ══ LEFT: Hero content ══ -->
+
+    <!-- ══ LEFT ══ -->
     <div class="left">
-      <img
-        class="wordmark"
-        src="assets/willow-wordmark-white.svg"
-        alt="Willow"
-        width="160"
-        height="52"
-      >
+
+      <!-- Inline SVG avoids img aspect-ratio issues with viewBox -->
+      <svg class="wordmark" viewBox="86 158 228 83" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Willow">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M168.59 170.3C168.59 166.63 165.61 163.65 161.94 163.65C158.27 163.65 155.29 166.63 155.29 170.3C155.29 173.97 158.27 176.95 161.94 176.95C165.61 176.95 168.59 173.97 168.59 170.3ZM205.12 234.78H191.84V163.66H205.12V234.78ZM127.14 196.48L133.39 216.02L139.64 196.48H153.32L140.03 234.78H129.09L122.45 216.02L115.81 234.78H104.87L91.58 196.48H105.26L111.51 216.02L117.76 196.48H127.14ZM173.57 234.78H186.85V180.07H173.57V234.78ZM228.85 235.56C217.13 235.56 207.75 226.18 207.75 215.63C207.75 205.08 217.13 195.7 228.85 195.7C240.58 195.7 249.95 205.08 249.95 215.63C249.95 226.18 240.58 235.56 228.85 235.56ZM228.85 223.83C232.76 223.83 236.28 220.31 236.28 215.63C236.28 210.94 232.76 207.42 228.85 207.42C224.94 207.42 221.43 210.94 221.43 215.63C221.43 220.32 224.94 223.83 228.85 223.83ZM288.49 216.02L282.24 196.48H272.87L266.62 216.02L260.37 196.48H246.69L259.98 234.78H270.92L277.56 216.02L284.2 234.78H295.13L308.42 196.48H294.74L288.49 216.02ZM168.58 196.48H155.3V234.78H168.58V196.48Z" fill="white"/>
+      </svg>
 
       <h1>
         Want to build<br>
@@ -446,7 +500,6 @@
       </div>
 
       <div class="cta-group">
-        <!-- Tally popup trigger -->
         <button
           class="btn-primary"
           data-tally-open="ODArVM"
@@ -457,15 +510,15 @@
           data-tally-auto-close="3000"
         >
           Apply Now
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
         <a href="https://willow.co" target="_blank" rel="noopener noreferrer" class="btn-ghost">
           Visit willow.co
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
       </div>
@@ -473,36 +526,61 @@
       <p class="footer-note">willow.co &nbsp;·&nbsp; Building the future of social media</p>
     </div>
 
-    <!-- ══ RIGHT: Decorative ══ -->
+    <!-- ══ RIGHT: product preview ══ -->
     <div class="right">
       <div class="ring ring-1"></div>
       <div class="ring ring-2"></div>
       <div class="ring ring-3"></div>
-      <div class="orb"></div>
 
-      <div class="stat-cards">
-        <div class="stat-card">
-          <div class="stat-icon">🚀</div>
-          <div class="stat-text">
-            <div class="stat-value">AI-first</div>
-            <div class="stat-label">Content at scale</div>
+      <!-- Mock social post generated by Willow AI -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar">W</div>
+          <div class="post-meta">
+            <div class="post-name">Bloom Coffee</div>
+            <div class="post-sub">via Willow AI · just now</div>
           </div>
+          <div class="post-badge">AI</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">🌍</div>
-          <div class="stat-text">
-            <div class="stat-value">Pan-European</div>
-            <div class="stat-label">Growing fast</div>
+
+        <div class="post-body">
+          Monday mornings hit different when your espresso is crafted with <strong>single-origin beans from Colombia</strong>. Come taste the difference. ☕
+        </div>
+
+        <div class="post-image">AI-generated creative</div>
+
+        <div class="post-footer">
+          <div class="post-stat">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>2.4k</span>
           </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">💡</div>
-          <div class="stat-text">
-            <div class="stat-value">Real impact</div>
-            <div class="stat-label">Shape what's next</div>
+          <div class="post-stat">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>831</span>
+          </div>
+          <div class="post-stat">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>142</span>
           </div>
         </div>
       </div>
+
+      <!-- Stats chips -->
+      <div class="stat-chips">
+        <div class="chip">
+          <div class="chip-val">50<span class="unit">k+</span></div>
+          <div class="chip-label">avg. impressions per week</div>
+        </div>
+        <div class="chip">
+          <div class="chip-val">3<span class="unit">×</span></div>
+          <div class="chip-label">faster content creation</div>
+        </div>
+        <div class="chip">
+          <div class="chip-val">EU<span class="unit"> 🌍</span></div>
+          <div class="chip-label">pan-european reach</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
